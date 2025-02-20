@@ -24,7 +24,7 @@ Para ejecutar este proyecto en tu máquina, necesitas tener un sistema operativo
 
 3. Ejecuta el script
     ```
-    fix-windows.bat
+    FixWindows.bat
     ```
 
 El script se ejecutará y comprobará la integridad de los archivos del sistema de Windows. Si se encuentran problemas, automáticamente intentará repararlos.

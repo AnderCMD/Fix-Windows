@@ -3,7 +3,7 @@ chcp 65001 > nul
 color 0b
 cls
 
-
+:: Título y descripción del script
 echo.
 echo     █████╗ 
 echo    ██╔══██╗███╗   ██╗██████╗ ███████╗██████╗  ██████╗███╗   ███╗██████╗ 
@@ -29,7 +29,7 @@ echo.
 echo [*] Iniciando proceso de reparación...
 set /p confirm="[?] Presione Enter para continuar..."
 
-:: Verifica administrador
+:: Verifica si el script se está ejecutando como administrador
 openfiles >nul 2>&1
 if %errorlevel% neq 0 (
     echo [X] Error: Ejecute como administrador
@@ -37,7 +37,7 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-:: Ejecuta comandos
+:: Ejecuta comandos de reparación del sistema
 echo [*] Ejecutando SFC...
 sfc /scannow
 echo [*] Ejecutando DISM CheckHealth...
@@ -50,4 +50,3 @@ DISM /Online /Cleanup-Image /RestoreHealth
 echo.
 echo [+] Proceso completado
 pause
-
