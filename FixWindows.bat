@@ -1,4 +1,3 @@
-REM filepath: /d:/AnderCMD/OneDrive/Ander/Software/Proyectos/Fix-Windows/FixWindows.bat
 @echo off
 chcp 65001 > nul
 color 0b
