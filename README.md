@@ -1,61 +1,63 @@
 # Fix-Windows
 
-_Este proyecto contiene un script automatizado en batch que comprueba la integridad de los archivos del sistema de Windows y los repara si es necesario. Utiliza herramientas integradas de Windows para verificar y reparar archivos corruptos o faltantes en el sistema._
+_This project contains an automated batch script that checks the integrity of Windows system files and repairs them if necessary. It uses built-in Windows tools to detect and fix corrupted or missing system files._
 
-## Comenzando 🚀
+## Getting Started 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+_These instructions will get you a copy of the project up and running on your local machine for development and testing purposes._
 
-### Pre-requisitos 📋
+### Prerequisites 📋
 
-Para ejecutar este proyecto en tu máquina, necesitas tener un sistema operativo Windows y acceso a la terminal de PowerShell o el Símbolo del sistema.
+To run this project on your machine, you need a Windows operating system and access to PowerShell or Command Prompt.
 
-### Instalación 🔧
+### Installation 🔧
 
-1. Clona el repositorio
+1. Clone the repository
     ```
     git clone https://github.com/AnderCMD/Fix-Windows.git
     ```
 
-2. Navega al directorio del proyecto
+2. Navigate to the project directory
     ```
     cd Fix-Windows
     ```
 
-3. Ejecuta el script
+3. Run the script
     ```
     FixWindows.bat
     ```
 
-El script se ejecutará y comprobará la integridad de los archivos del sistema de Windows. Si se encuentran problemas, automáticamente intentará repararlos.
+The script will run and check the integrity of the Windows system files. If issues are found, it will automatically attempt to repair them.
 
-## Ejecutando el script ⚙️
+## Running the script ⚙️
 
-El script realiza los siguientes pasos:
+The script performs the following steps:
 
-1. Ejecuta la herramienta `sfc /scannow` para comprobar la integridad de los archivos del sistema.
-2. Si se encuentran problemas, intentará repararlos automáticamente.
-3. En caso de que `sfc` no pueda solucionar los problemas, el script ejecutará `DISM` para realizar una reparación más profunda.
+1. Runs the `sfc /scannow` tool to check the integrity of system files.
+2. If issues are found, it attempts to repair them automatically.
+3. If `sfc` cannot fix the issues, the script runs `DISM` to perform a deeper repair.
 
-## Despliegue 📦
+## Deployment 📦
 
-Este proyecto no requiere despliegue, ya que el script está diseñado para ser ejecutado localmente en una máquina con Windows.
+This project does not require deployment, as the script is designed to run locally on a Windows machine.
 
-## Construido con 🛠️
+## Built With 🛠️
 
-* [Batch](https://ss64.com/nt/) - Lenguaje de secuencias de comandos utilizado para automatizar el proceso
+* [Batch](https://ss64.com/nt/) - Scripting language used to automate the process
 
-## Contribuyendo 🖇️
+## Contributing 🖇️
 
-Este proyecto ha sido realizado por mí. Si tienes alguna sugerencia o mejora, no dudes en abrir un **pull request**.
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## Autores ✒️
+## Authors ✒️
 
-* **Ander González** - *Ingeniero en Software* - [AnderCMD](https://github.com/AnderCMD)
+* **Ander González** - *Software Engineer* - [AnderCMD](https://github.com/AnderCMD)
 
-## Licencia 📄
+See also the list of [contributors](https://github.com/AnderCMD/Fix-Windows/contributors) who participated in this project.
 
-Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE.md](LICENSE.md) para detalles.
+## License 📄
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-⌨️ con ❤️ por [AnderCMD](https://github.com/AnderCMD) 😊
+⌨️ with ❤️ by [AnderCMD](https://github.com/AnderCMD) 😊

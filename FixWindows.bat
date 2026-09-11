@@ -3,7 +3,7 @@ chcp 65001 > nul
 color 0b
 cls
 
-:: Título y descripción del script
+:: Title and description of the script
 powershell -command "Write-Host '               ████████╗ ██████╗  ██████╗ ██╗      ███████╗'"
 powershell -command "Write-Host '               ╚══██╔══╝██╔═══██╗██╔═══██╗██║      ██╔════╝'"
 powershell -command "Write-Host '                  ██║   ██║   ██║██║   ██║██║      ███████╗'"
@@ -16,28 +16,28 @@ powershell -command "Write-Host '   ══════════════�
 
 echo.
 
-:: Confirmación para iniciar
-echo [*] Iniciando proceso de reparación...
-set /p confirm="[?] Presione Enter para continuar..."
+:: Confirmation to start
+echo [*] Starting repair process...
+set /p confirm="[?] Press Enter to continue..."
 
-:: Verifica si el script se está ejecutando como administrador
+:: Check if the script is running as administrator
 openfiles >nul 2>&1
 if %errorlevel% neq 0 (
-    echo [X] Error: Ejecute como administrador
+    echo [X] Error: Please run as administrator
     pause
     exit /b
 )
 
-:: Ejecuta comandos de reparación del sistema
-echo [*] Ejecutando SFC...
+:: Run system repair commands
+echo [*] Running SFC...
 sfc /scannow
-echo [*] Ejecutando DISM CheckHealth...
+echo [*] Running DISM CheckHealth...
 DISM /Online /Cleanup-Image /CheckHealth
-echo [*] Ejecutando DISM ScanHealth...
+echo [*] Running DISM ScanHealth...
 DISM /Online /Cleanup-Image /ScanHealth
-echo [*] Ejecutando DISM RestoreHealth...
+echo [*] Running DISM RestoreHealth...
 DISM /Online /Cleanup-Image /RestoreHealth
 
 echo.
-echo [+] Proceso completado
+echo [+] Process completed
 pause
