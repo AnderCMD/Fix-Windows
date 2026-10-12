@@ -1,63 +1,74 @@
 # Fix-Windows
 
-_This project contains an automated batch script that checks the integrity of Windows system files and repairs them if necessary. It uses built-in Windows tools to detect and fix corrupted or missing system files._
+![CI](https://github.com/AnderCMD/Fix-Windows/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6)
 
-## Getting Started 🚀
+A single-file Windows repair and maintenance toolkit. It runs on plain `cmd.exe` with **no dependencies**; PowerShell is used only as an optional helper and every feature has a fallback.
 
-_These instructions will get you a copy of the project up and running on your local machine for development and testing purposes._
+## Features
 
-### Prerequisites 📋
+| Area | Option |
+|------|--------|
+| Repair | Quick repair (SFC + DISM CheckHealth), full repair (DISM Check/Scan/Restore + SFC), SFC, DISM RestoreHealth, online CHKDSK with optional scheduled fix |
+| Cleanup | Temporary files, crash dumps, thumbnail and INet caches, Recycle Bin, Windows Update cache, component store, Disk Cleanup |
+| Tools | Network reset (DNS, Winsock, TCP/IP), icon cache rebuild, restore point, disk health, system info, SFC details export |
+| Safety | Confirmation prompts, administrator checks, logging, restore point option |
 
-To run this project on your machine, you need a Windows operating system and access to PowerShell or Command Prompt.
+## Quick start
 
-### Installation 🔧
+1. Download or clone the repository:
+   ```
+   git clone https://github.com/AnderCMD/Fix-Windows.git
+   ```
+2. Right-click `FixWindows.bat` and choose **Run as administrator**, or run it normally and press `R` in the menu to elevate.
+3. Pick an option from the menu.
 
-1. Clone the repository
-    ```
-    git clone https://github.com/AnderCMD/Fix-Windows.git
-    ```
+## Command line
 
-2. Navigate to the project directory
-    ```
-    cd Fix-Windows
-    ```
+```
+FixWindows.bat [/yes] [action]
+```
 
-3. Run the script
-    ```
-    FixWindows.bat
-    ```
+| Action | Description |
+|--------|-------------|
+| *(none)* | Interactive menu |
+| `/quick` | SFC scan + DISM CheckHealth |
+| `/full` | DISM Check, Scan, Restore + SFC |
+| `/sfc` | System File Checker only |
+| `/dism` | DISM RestoreHealth only |
+| `/chkdsk` | Online disk scan |
+| `/temp` | Delete temporary files |
+| `/wu` | Reset Windows Update cache |
+| `/net` | Reset the network stack |
+| `/cleanup` | Component store cleanup |
+| `/icons` | Rebuild icon cache |
+| `/restore` | Create a restore point |
+| `/disk` | Disk health |
+| `/info` | System information |
+| `/yes` | Skip confirmation prompts |
 
-The script will run and check the integrity of the Windows system files. If issues are found, it will automatically attempt to repair them.
+The exit code is the result of the last command, so the script is usable from automation.
 
-## Running the script ⚙️
+## Logs
 
-The script performs the following steps:
+Actions and exit codes are appended to `logs\FixWindows.log` next to the script, or to `%TEMP%\FixWindows.log` if that folder is read-only.
 
-1. Runs the `sfc /scannow` tool to check the integrity of system files.
-2. If issues are found, it attempts to repair them automatically.
-3. If `sfc` cannot fix the issues, the script runs `DISM` to perform a deeper repair.
+## Safety notes
 
-## Deployment 📦
+- Most repair actions require administrator rights; without them the script runs only user-level cleanup and diagnostics.
+- Review what an option does before using `/yes`.
+- Consider creating a restore point (option `C`) before large repairs.
+- The script never downloads or runs external code.
 
-This project does not require deployment, as the script is designed to run locally on a Windows machine.
+## Contributing
 
-## Built With 🛠️
+See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities as described in [SECURITY.md](SECURITY.md). Release notes live in [CHANGELOG.md](CHANGELOG.md).
 
-* [Batch](https://ss64.com/nt/) - Scripting language used to automate the process
+## Author
 
-## Contributing 🖇️
+**Ander González** - [AnderCMD](https://github.com/AnderCMD)
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+## License
 
-## Authors ✒️
-
-* **Ander González** - *Software Engineer* - [AnderCMD](https://github.com/AnderCMD)
-
-See also the list of [contributors](https://github.com/AnderCMD/Fix-Windows/contributors) who participated in this project.
-
-## License 📄
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-⌨️ with ❤️ by [AnderCMD](https://github.com/AnderCMD) 😊
+MIT - see [LICENSE](LICENSE).

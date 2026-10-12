@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Version flag
+        shell: cmd
+        run: FixWindows.bat /version
+      - name: Help text
+        shell: cmd
+        run: FixWindows.bat /help
+      - name: System info
+        shell: cmd
+        run: FixWindows.bat /yes /info
+      - name: Unknown action must fail gracefully
+        shell: cmd
+        run: FixWindows.bat /bogus & exit /b 0
+      - name: Temp cleanup
+        shell: cmd
+        run: FixWindows.bat /yes /temp
+      - name: Ensure CRLF line endings
+        shell: pwsh
+        run: |
+          $t = [IO.File]::ReadAllText("FixWindows.bat")
+          if ($t -match "(?<!\r)\n") { throw "FixWindows.bat must use CRLF line endings" }

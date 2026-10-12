@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version from script
+        id: ver
+        shell: pwsh
+        run: |
+          $m = Select-String -Path FixWindows.bat -Pattern '^set "VERSION=([^"]+)"'
+          if (-not $m) { throw 'VERSION not found in FixWindows.bat' }
+          "version=$($m.Matches[0].Groups[1].Value)" >> $env:GITHUB_OUTPUT
+
+      - name: Check whether the tag already exists
+        id: tag
+        shell: pwsh
+        run: |
+          git fetch --tags
+          $exists = git tag -l "v${{ steps.ver.outputs.version }}"
+          "exists=$([bool]$exists)".ToLower() >> $env:GITHUB_OUTPUT
+
+      - name: Package
+        if: steps.tag.outputs.exists == 'false'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path FixWindows.bat, README.md, LICENSE, CHANGELOG.md -DestinationPath "Fix-Windows-v${{ steps.ver.outputs.version }}.zip"
+
+      - name: Create release
+        if: steps.tag.outputs.exists == 'false'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.ver.outputs.version }}" "Fix-Windows-v${{ steps.ver.outputs.version }}.zip" FixWindows.bat `
+            --target "${{ github.sha }}" `
+            --title "Fix-Windows v${{ steps.ver.outputs.version }}" `
+            --generate-notes
