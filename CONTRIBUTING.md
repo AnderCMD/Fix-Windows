@@ -17,6 +17,7 @@ Thanks for your interest in contributing! This project is a small Windows batch 
 ## Branches and releases
 
 - `dev` is the integration branch; open pull requests against it.
+- `main` is protected: it only accepts pull requests from `dev` (checked by the "Enforce source branch" workflow) and requires CI to pass.
 - `main` is stable. Every push to `main` runs the Release workflow, which reads `VERSION` from `FixWindows.bat` and publishes a GitHub Release `vX.Y.Z` with generated notes. Bump `VERSION` and update `CHANGELOG.md` before merging into `main`; if the tag already exists, no release is created.
 
 ## Reporting bugs

@@ -1,0 +1,23 @@
+name: Enforce source branch
+
+# Pull requests into main must come from dev.
+# Mark the "Only dev can merge into main" check as required in the branch protection rules.
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  only-dev:
+    name: Only dev can merge into main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check head branch
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+        run: |
+          if [ "$HEAD_REF" != "dev" ] || [ "$HEAD_REPO" != "$GITHUB_REPOSITORY" ]; then
+            echo "::error::Pull requests into main must come from the dev branch of this repository (got '$HEAD_REPO:$HEAD_REF')."
+            exit 1
+          fi
