@@ -1,7 +1,7 @@
 @echo off
 :: ============================================================================
 ::  Fix-Windows - Windows repair and maintenance toolkit
-::  https://github.com/AnderCMD/Fix-Windows  -  MIT License
+::  https://github.com/AnderCMD/Fix-Windows  -  Apache License 2.0
 ::
 ::  Pure batch: works with or without PowerShell. PowerShell is only used as an
 ::  optional helper (elevation, restore points, disk health) with fallbacks.
