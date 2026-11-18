@@ -43,6 +43,10 @@ Feature and improvement suggestions are welcome. Please open an issue describing
 - Write comments and output messages in English.
 - Keep changes minimal and focused on a single purpose per pull request.
 
+## License
+
+By contributing, you agree that your contributions will be licensed under the [Apache License 2.0](LICENSE), as defined in section 5 of that license.
+
 ## Code of Conduct
 
 By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
