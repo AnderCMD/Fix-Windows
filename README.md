@@ -1,7 +1,7 @@
 # Fix-Windows
 
 ![CI](https://github.com/AnderCMD/Fix-Windows/actions/workflows/ci.yml/badge.svg)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6)
 
 A single-file Windows repair and maintenance toolkit. It runs on plain `cmd.exe` with **no dependencies**; PowerShell is used only as an optional helper and every feature has a fallback.
@@ -71,4 +71,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities as described in [
 
 ## License
 
-MIT - see [LICENSE](LICENSE).
+Apache 2.0 - see [LICENSE](LICENSE).
